@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "299386686742",
+    "project_id": "tracking-87cb1",
+    "storage_bucket": "tracking-87cb1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:299386686742:android:c9b5fd678a5a421aeed437",
+        "android_client_info": {
+          "package_name": "com.wegrow.tracking"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIMQSCewDEgys17UYtrvASRm5vJ6G__cw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

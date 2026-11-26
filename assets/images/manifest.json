@@ -1,0 +1,37 @@
+{
+  "name": "WeGrow AI – Business Owner & Executive Planner",
+  "short_name": "WeGrow Tracking",
+  "description": "Executive Daily & Weekly Planner for Business Owners and Managing Directors",
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "background_color": "#FAF8F5",
+  "theme_color": "#D97732",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/app-icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/app-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

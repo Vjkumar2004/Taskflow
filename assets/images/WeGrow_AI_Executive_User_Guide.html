@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WeGrow AI – Executive User Guide & Operations Manual</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #243247;
+      --accent: #D97732;
+      --teal: #0F766E;
+      --bg: #F9F7F3;
+      --card-bg: #FFFFFF;
+      --border: #E8E3DA;
+      --text: #1E293B;
+      --muted: #64748B;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 14px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Outfit', sans-serif;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    /* Print Controls */
+    .print-bar {
+      position: sticky;
+      top: 16px;
+      z-index: 100;
+      background: rgba(36, 50, 71, 0.95);
+      backdrop-filter: blur(8px);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      margin-bottom: 32px;
+    }
+
+    .btn-print {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+
+    .btn-print:hover {
+      background: #C36422;
+    }
+
+    /* Document Header / Cover */
+    .doc-header {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 48px;
+      margin-bottom: 32px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .doc-header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--primary), var(--accent), var(--teal));
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+    }
+
+    .logo-img {
+      height: 52px;
+      object-contain: fit;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-teal {
+      background: rgba(15, 118, 110, 0.1);
+      color: var(--teal);
+      border: 1px solid rgba(15, 118, 110, 0.2);
+    }
+
+    .badge-accent {
+      background: rgba(217, 119, 50, 0.1);
+      color: var(--accent);
+      border: 1px solid rgba(217, 119, 50, 0.2);
+    }
+
+    .doc-title {
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .doc-subtitle {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 680px;
+      margin-bottom: 24px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      font-size: 12px;
+    }
+
+    .meta-item strong {
+      display: block;
+      color: var(--primary);
+      font-size: 13px;
+    }
+
+    .meta-item span {
+      color: var(--muted);
+    }
+
+    /* Sections */
+    .section {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 28px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+      page-break-inside: avoid;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--primary);
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    /* Cards Grid */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin: 16px 0;
+    }
+
+    .feature-card {
+      background: #FAF8F5;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .feature-card h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .feature-card p {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Steps Box */
+    .step-list {
+      list-style: none;
+      counter-reset: step-counter;
+      margin: 16px 0;
+    }
+
+    .step-item {
+      counter-increment: step-counter;
+      position: relative;
+      padding-left: 36px;
+      margin-bottom: 16px;
+    }
+
+    .step-item::before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 24px;
+      height: 24px;
+      background: var(--accent);
+      color: white;
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step-item strong {
+      color: var(--primary);
+      font-size: 13px;
+    }
+
+    .step-item p {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* Callout */
+    .callout {
+      background: rgba(217, 119, 50, 0.08);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      padding: 14px 18px;
+      margin: 18px 0;
+      font-size: 13px;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin: 16px 0;
+    }
+
+    th, td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: #FAF8F5;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    td strong {
+      color: var(--primary);
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background: white;
+        font-size: 12pt;
+      }
+
+      .print-bar {
+        display: none !important;
+      }
+
+      .container {
+        max-width: 100%;
+        padding: 0;
+      }
+
+      .doc-header, .section {
+        border: 1px solid #ddd;
+        box-shadow: none;
+        page-break-inside: avoid;
+        margin-bottom: 20px;
+        padding: 24px;
+      }
+
+      @page {
+        margin: 15mm;
+        size: A4 portrait;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .grid-2, .meta-grid {
+        grid-template-columns: 1fr;
+      }
+      .doc-header {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Printable bar -->
+    <div class="print-bar">
+      <div>
+        <div style="font-weight: 700; font-size: 14px;">WeGrow AI Executive Operations Manual</div>
+        <div style="font-size: 11px; color: #94A3B8;">Prepared for Business Owners, Founders & Managing Directors</div>
+      </div>
+      <button class="btn-print" onclick="window.print()">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+        Save as PDF / Print
+      </button>
+    </div>
+
+    <!-- Document Header / Cover -->
+    <header class="doc-header">
+      <div class="brand-row">
+        <img src="/logo.png" alt="WeGrow AI Logo" class="logo-img">
+        <span class="badge badge-teal">Client Operations Manual</span>
+      </div>
+
+      <h1 class="doc-title">WeGrow AI Executive Planner</h1>
+      <p class="doc-subtitle">
+        A premier strategic operating system designed specifically for Business Owners, CEOs, and Managing Directors to eliminate operational chaos, protect deep strategic focus, and accelerate business growth.
+      </p>
+
+      <div class="meta-grid">
+        <div class="meta-item">
+          <span>Target Audience</span>
+          <strong>Managing Directors & C-Suite Executives</strong>
+        </div>
+        <div class="meta-item">
+          <span>Core Methodology</span>
+          <strong>OKR Alignment & 50-Min Focus Blocks</strong>
+        </div>
+        <div class="meta-item">
+          <span>AI Engine</span>
+          <strong>Google Gemini 2.5 Strategic Intelligence</strong>
+        </div>
+      </div>
+    </header>
+
+    <!-- SECTION 1: Executive Overview -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="section-num">1</span>
+        Executive Overview & The Core Philosophy
+      </h2>
+      <p class="section-desc">
+        Why standard to-do lists fail executives, and how WeGrow AI solves it.
+      </p>
+
+      <p style="margin-bottom: 14px;">
+        As a business leader, your biggest risk isn't lack of work—it's <strong>reactive overload</strong>. When your day is consumed by minor emergencies, strategic priorities get postponed, stalling company growth.
+      </p>
+
+      <div class="grid-2">
+        <div class="feature-card">
+          <h4>🎯 Strategic Priority Overload</h4>
+          <p>WeGrow AI strictly limits your daily top commitments to <strong>3 Core Focus Priorities</strong>. If everything is important, nothing is important.</p>
+        </div>
+        <div class="feature-card">
+          <h4>⏱️ 50-Minute Protected Focus</h4>
+          <p>Allocate dedicated deep-work blocks into your executive timeline to review proposals, close deals, and steer strategy without interruptions.</p>
+        </div>
+        <div class="feature-card">
+          <h4>📈 3-Tier Cascading Alignment</h4>
+          <p>Daily deliverables directly roll up into <strong>Weekly Commitments</strong>, which roll up into <strong>Monthly Strategic OKRs</strong>.</p>
+        </div>
+        <div class="feature-card">
+          <h4>🤖 Executive AI Partner</h4>
+          <p>An on-demand Google Gemini strategic sounding board that flags bottlenecks, generates executive summaries, and prepares meeting talking points.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: Getting Started & Authentication -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="section-num">2</span>
+        Accessing Your Executive Workspace
+      </h2>
+      <p class="section-desc">
+        Simple, secure corporate sign-in with full data protection.
+      </p>
+
+      <ol class="step-list">
+        <li class="step-item">
+          <strong>Open the Portal</strong>
+          <p>Navigate to your corporate WeGrow URL on any desktop or mobile browser.</p>
+        </li>
+        <li class="step-item">
+          <strong>Authorized Sign-In</strong>
+          <p>Enter your authorized executive credentials:</p>
+          <div style="background: #F1F5F9; padding: 8px 12px; border-radius: 6px; font-family: monospace; font-size: 12px; margin-top: 6px;">
+            Email: <strong>wegrowmd@gmail.com</strong><br>
+            Password: <strong>Wegrow@2026</strong>
+          </div>
+        </li>
+        <li class="step-item">
+          <strong>Install on Mobile or Desktop (Optional & Recommended)</strong>
+          <p>Click <strong>"Install App (PWA)"</strong> in the prompt banner to install WeGrow AI directly to your iPhone, iPad, Android phone, or laptop home screen for 1-tap offline access.</p>
+        </li>
+      </ol>
+
+      <div class="callout">
+        <div class="callout-title">🔒 Cloud Database Protection</div>
+        Your executive identity, schedule, and custom password are stored directly in a secure cloud database (Supabase PostgreSQL), ensuring your changes remain safe across all devices.
+      </div>
+    </section>
+
+    <!-- SECTION 3: Key Features & Daily Navigation -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="section-num">3</span>
+        Feature Guide & Daily Navigation
+      </h2>
+      <p class="section-desc">
+        Everything you need to master each section of the application.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Module</th>
+            <th>Primary Purpose</th>
+            <th>How to Use It</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Executive Focus Dashboard</strong><br><span style="color: #64748B;">/dashboard</span></td>
+            <td>Your morning high-level cockpit.</td>
+            <td>Review today's completion rate, top 3 focus priorities, live execution timeline, and overdue action notifications.</td>
+          </tr>
+          <tr>
+            <td><strong>Daily Focus & Timeline</strong><br><span style="color: #64748B;">/today</span></td>
+            <td>Your active execution workspace.</td>
+            <td>Add daily deliverables with exact time slots. Click checkboxes to mark items complete, or shift unfinished items to tomorrow with 1 click.</td>
+          </tr>
+          <tr>
+            <td><strong>Weekly Commitments</strong><br><span style="color: #64748B;">/weekly-plan</span></td>
+            <td>Multi-day project execution.</td>
+            <td>Distribute executive goals across Monday to Friday/Saturday to prevent scheduling bottlenecks and burnout.</td>
+          </tr>
+          <tr>
+            <td><strong>Monthly Strategic Goals</strong><br><span style="color: #64748B;">/monthly-goals</span></td>
+            <td>High-level business milestones.</td>
+            <td>Define 3 to 5 core objectives for the quarter (e.g., "Achieve ₹50L Pipeline"). Track progress percentage bars as milestones are achieved.</td>
+          </tr>
+          <tr>
+            <td><strong>Weekly Executive Review</strong><br><span style="color: #64748B;">/weekly-review</span></td>
+            <td>Friday wrap-up & velocity score.</td>
+            <td>Review your weekly execution percentage, reflect on key commercial wins, and reset your priority matrix for the coming week.</td>
+          </tr>
+          <tr>
+            <td><strong>Gemini AI Strategic Partner</strong><br><span style="color: #64748B;">/ai-assistant</span></td>
+            <td>Autonomous executive sounding board.</td>
+            <td>Ask strategic questions like <em>"Analyze my week for bottlenecks"</em> or <em>"Draft talking points for an investor meeting"</em>.</td>
+          </tr>
+          <tr>
+            <td><strong>Executive Notes</strong><br><span style="color: #64748B;">/notes</span></td>
+            <td>Fast capture for confidential memos.</td>
+            <td>Record quick board memos, client negotiation terms, and thoughts on the go.</td>
+          </tr>
+          <tr>
+            <td><strong>Profile & Governance</strong><br><span style="color: #64748B;">/profile</span></td>
+            <td>Corporate identity & master registry.</td>
+            <td>View and manage your executive designation, company details, phone, and division.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SECTION 4: Recommended Executive Routine -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="section-num">4</span>
+        The 3-Step Daily Executive Routine
+      </h2>
+      <p class="section-desc">
+        How to get maximum clarity and output in under 15 minutes a day.
+      </p>
+
+      <div class="grid-2">
+        <div class="feature-card" style="border-left: 4px solid var(--primary);">
+          <h4>🌅 1. Morning Alignment (08:30 AM — 5 Mins)</h4>
+          <p>
+            • Open <strong>Dashboard</strong>.<br>
+            • Set or confirm your <strong>Top 3 Focus Priorities</strong>.<br>
+            • Block dedicated time for high-value revenue or client tasks before taking team calls.
+          </p>
+        </div>
+
+        <div class="feature-card" style="border-left: 4px solid var(--accent);">
+          <h4>☀️ 2. Midday Execution (1:00 PM — 2 Mins)</h4>
+          <p>
+            • Check off completed items in <strong>Today's Timeline</strong>.<br>
+            • If an unexpected fire arose, reassign non-critical tasks using the rollover tool.
+          </p>
+        </div>
+
+        <div class="feature-card" style="border-left: 4px solid var(--teal);">
+          <h4>🌆 3. Evening Wrap-Up (06:30 PM — 5 Mins)</h4>
+          <p>
+            • Check your daily completion rate.<br>
+            • Clean your schedule so you leave work with a clear mind.<br>
+            • Preview tomorrow's schedule to start ahead of the game.
+          </p>
+        </div>
+
+        <div class="feature-card" style="border-left: 4px solid #8B5CF6;">
+          <h4>📅 4. Sunday Strategic Reset (15 Mins)</h4>
+          <p>
+            • Open <strong>Weekly Review</strong> to view your velocity score.<br>
+            • Review monthly OKRs in <strong>Monthly Goals</strong>.<br>
+            • Outline the 3 big deliverables that will make next week a major success.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: Changing Credentials & Settings -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="section-num">5</span>
+        Updating Your Credentials & Preferences
+      </h2>
+      <p class="section-desc">
+        Personalizing your business profile and updating your master password.
+      </p>
+
+      <ol class="step-list">
+        <li class="step-item">
+          <strong>Navigate to Settings</strong>
+          <p>Click on <strong>Settings</strong> in the left sidebar navigation.</p>
+        </li>
+        <li class="step-item">
+          <strong>Edit Your Executive Profile</strong>
+          <p>Update your <strong>Full Name</strong>, <strong>Designation</strong>, <strong>Company Name</strong>, and <strong>Direct Phone</strong>. Click <strong>"Save Executive Profile"</strong>. The changes immediately reflect across all headers and navigation bars.</p>
+        </li>
+        <li class="step-item">
+          <strong>Update Your Password</strong>
+          <p>Under <strong>Security & Password Management</strong>, enter your current password, type your new password (minimum 6 characters), and click <strong>"Update Password"</strong>. It immediately saves to your secure cloud database.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- SECTION 6: FAQ -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="section-num">6</span>
+        Frequently Asked Questions
+      </h2>
+
+      <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 14px;">
+        <div>
+          <strong style="color: var(--primary); font-size: 13px;">Q: Can I use this on my iPhone or Android device?</strong>
+          <p style="font-size: 12px; color: var(--muted); margin-top: 2px;">
+            Yes. Open the link in Safari or Chrome, tap the Share/Menu icon, and select <strong>"Add to Home Screen"</strong>. It will operate as a fast, standalone full-screen executive app.
+          </p>
+        </div>
+
+        <div>
+          <strong style="color: var(--primary); font-size: 13px;">Q: What does the "Overdue Action Notification" banner mean?</strong>
+          <p style="font-size: 12px; color: var(--muted); margin-top: 2px;">
+            If a scheduled focus item (such as an important client proposal review) passes its scheduled hour without being checked off, the system alerts you so you can either complete it or reschedule it.
+          </p>
+        </div>
+
+        <div>
+          <strong style="color: var(--primary); font-size: 13px;">Q: Is my executive data secure?</strong>
+          <p style="font-size: 12px; color: var(--muted); margin-top: 2px;">
+            Yes. All profile records, credentials, tasks, and notes are secured in an enterprise-grade Supabase PostgreSQL cloud database with Row Level Security (RLS) policies.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: Smart Alarms, Persistent Reminders & Rescheduling -->
+    <section class="card" style="margin-top: 24px; border-left: 4px solid var(--accent);">
+      <h2 class="section-title">
+        <span class="section-num">7</span>
+        Smart Alarms, Persistent Follow-ups & Next-Day Rescheduling
+      </h2>
+      <p style="font-size: 13px; color: var(--muted); margin-top: 6px;">
+        The Managing Director's proactive execution partner. Instead of merely displaying tasks, WeGrow AI actively ensures scheduled routine work gets completed through configurable alarms and intelligent next-day carry-forward.
+      </p>
+
+      <div style="margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+        <div style="background: #FFFDFB; border: 1px solid var(--border); border-radius: 10px; padding: 14px;">
+          <h4 style="font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 4px;">1. Advance Alarms & Chimes</h4>
+          <p style="font-size: 11px; color: var(--muted); line-height: 1.5;">
+            Configurable 15-minute and 5-minute advance chime alerts, followed by an immediate task-start chime. For client meetings and branch visits, 30-minute preparation alerts ensure executive readiness.
+          </p>
+        </div>
+
+        <div style="background: #FFFDFB; border: 1px solid var(--border); border-radius: 10px; padding: 14px;">
+          <h4 style="font-size: 12px; font-weight: 700; color: #DC2626; margin-bottom: 4px;">2. Hourly Persistent Follow-ups</h4>
+          <p style="font-size: 11px; color: var(--muted); line-height: 1.5;">
+            If a scheduled routine task remains incomplete after its start time, recurring reminders prompt you every 60 minutes during permitted working hours until checked off, snoozed, or rescheduled.
+          </p>
+        </div>
+
+        <div style="background: #FFFDFB; border: 1px solid var(--border); border-radius: 10px; padding: 14px;">
+          <h4 style="font-size: 12px; font-weight: 700; color: var(--teal); margin-bottom: 4px;">3. Automatic End-of-Day Pending</h4>
+          <p style="font-size: 11px; color: var(--muted); line-height: 1.5;">
+            At close of business, unfinished tasks are automatically moved to the <strong>Pending Tasks</strong> backlog with original scheduled dates, notes, and priority preserved. Zero tasks are ever lost or blindly discarded.
+          </p>
+        </div>
+
+        <div style="background: #FFFDFB; border: 1px solid var(--border); border-radius: 10px; padding: 14px;">
+          <h4 style="font-size: 12px; font-weight: 700; color: var(--primary); margin-bottom: 4px;">4. Next-Day Slot Suggestions</h4>
+          <p style="font-size: 11px; color: var(--muted); line-height: 1.5;">
+            Draft rescheduling proposals find free time slots for tomorrow without altering weekly templates or overwriting deep work blocks. <em>Client meetings are protected and require explicit MD confirmation.</em>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 24px 0 40px; color: var(--muted); font-size: 11px;">
+      © 2026 WeGrow AI Executive Systems • Designed for Visionary Business Leadership
+    </footer>
+
+  </div>
+
+</body>
+</html>
